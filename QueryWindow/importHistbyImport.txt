@@ -1,0 +1,8 @@
+select si.ImportName, fi.FileName, ih.FileVersionID, ih.HistoryDate
+from integration..Import_History ih
+left join Integration..file_version fv on ih.FileVersionID = fv.FileVersionID
+left join Integration..File_Info fi on fv.fileid = fi.FileID
+left join Integration..Source_Import si on si.ImportProcessorID = ih.ImportProcessorID
+where ih.dealerid = 
+and ih.ImportProcessorID = (select ImportProcessorID from Integration..Source_Import where ImportName = '
+order by ih.HistoryDate desc

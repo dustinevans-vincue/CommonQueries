@@ -1,0 +1,9 @@
+select 
+	case when listingtypeid = 1 then 'New' else 'Used' end,
+	case when donotexport = 0 then 'Off Hold' else 'On Hold' end,
+	count(vin)
+from dealersite..inventory
+where dealerid = 
+and inventorystatusid = 1
+group by listingtypeid, donotexport
+order by listingtypeid, donotexport
